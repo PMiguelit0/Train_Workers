@@ -1,4 +1,4 @@
-package com.example.teste;
+package com.example.app;
 
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;

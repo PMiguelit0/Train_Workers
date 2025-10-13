@@ -1,4 +1,4 @@
-package com.example.teste;
+package com.example.app;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;

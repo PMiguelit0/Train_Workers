@@ -1,5 +1,6 @@
-package com.example.teste;
+package com.example.app;
 
+import com.example.app.Semaphores;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
