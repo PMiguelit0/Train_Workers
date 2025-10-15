@@ -51,15 +51,22 @@ public class InitialSceneController implements Initializable {
         String tempoViagemStr = travellingTime.getText();
         String tamanhoDepositoStr = depositLimit.getText();
 
-        if (cargaTremStr.isEmpty() || tempoViagemStr.isEmpty() || tamanhoDepositoStr.isEmpty()) {
-            errorLabel.setText("Todos os campos devem ser preenchidos.");
-            errorLabel.setVisible(true);
-            errorLabel.setManaged(true);
+        trainCapacityValue = Integer.parseInt(cargaTremStr);
+        travellingTimeValue = Integer.parseInt(tempoViagemStr);
+        depositLimitValue = Integer.parseInt(tamanhoDepositoStr);
+
+
+        if (!cargaTremStr.isEmpty() & !tempoViagemStr.isEmpty() & !tamanhoDepositoStr.isEmpty() & trainCapacityValue>depositLimitValue) {
+            if(trainCapacityValue>depositLimitValue){
+                errorLabel.setText("O tamanho do depósito deve ser maior que a carga do trem.");
+                errorLabel.setVisible(true);
+                errorLabel.setManaged(true);
+            }else {
+                errorLabel.setText("Todos os campos devem ser preenchidos.");
+                errorLabel.setVisible(true);
+                errorLabel.setManaged(true);
+            }
         } else {
-            // MUDANÇA 2: Atribua os valores às variáveis estáticas
-            trainCapacityValue = Integer.parseInt(cargaTremStr);
-            travellingTimeValue = Integer.parseInt(tempoViagemStr);
-            depositLimitValue = Integer.parseInt(tamanhoDepositoStr);
 
             // MUDANÇA 3: Inicialize os semáforos com TODOS os valores necessários
             Semaphores.initializeSemaphores(depositLimitValue);
