@@ -16,7 +16,7 @@ Instruções passo a passo sobre como configurar e executar o projeto.
 1.  Clone o repositório: `git clone https://github.com/PMiguelit0/Train_Workers`
 2.  Navegue até o diretório do projeto: `cd Train_Workers`
 3.  Instale as dependências: `mvn install`
-4.  Execute o projeto: `mvn spring-boot:run` (se for um projeto Spring Boot)
+4.  Execute o projeto: `mvn clean javafx:run`
 
 ## Tecnologias Utilizadas
 
