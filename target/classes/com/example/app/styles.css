@@ -1,0 +1,64 @@
+/* styles.css */
+
+.text-field {
+    -fx-background-color: #f0f0f0;
+    -fx-border-color: #c0c0c0;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-prompt-text-fill: #a0a0a0;
+    -fx-max-width: 200px; /* Define a largura máxima */
+}
+
+.welcome-label {
+    -fx-font-size: 32px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+.error-label{
+    -fx-text-fill:white;
+}
+.confirm-button {
+    -fx-background-color:
+        linear-gradient(#7FFF9F, #66CD88), /* Verde mais claro para o topo, mais escuro para a base */
+        linear-gradient(#66CD88, #4CAF50); /* Um gradiente sutil para profundidade */
+
+    /* Borda (cor escura e arredondada) */
+    -fx-background-insets: 0, 0 0 1 0; /* Simula uma borda inferior mais escura */
+    -fx-background-radius: 8; /* Cantos arredondados */
+    -fx-border-color: #388E3C; /* Cor da borda (verde escuro) */
+    -fx-border-width: 2px; /* Largura da borda */
+    -fx-border-radius: 8; /* Cantos arredondados para a borda */
+
+    /* Preenchimento interno do botão */
+    -fx-padding: 10px 25px;
+
+    /* Cor do texto */
+    -fx-text-fill: #FFFFFF; /* Branco */
+
+    /* Configuração da fonte */
+    -fx-font-family: "Impact", "Arial Black", sans-serif; /* Tenta usar Impact, senão Arial Black */
+    -fx-font-size: 24px; /* Tamanho da fonte */
+    -fx-font-weight: bold; /* Negrito */
+
+    /* Sombra (opcional, para dar mais profundidade) */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 3); /* Sombra preta sutil */
+}
+
+/* Efeito ao passar o mouse sobre o botão (hover) */
+.confirm-button:hover {
+    -fx-background-color:
+        linear-gradient(#8FEFBF, #7ADBB0), /* Verde ligeiramente mais claro */
+        linear-gradient(#7ADBB0, #5CBF60);
+    -fx-border-color: #4CAF50; /* Borda um pouco mais clara no hover */
+    -fx-cursor: hand; /* Muda o cursor para uma "mãozinha" */
+}
+
+/* Efeito ao clicar no botão (pressed) */
+.confirm-button:pressed {
+    -fx-background-color:
+        linear-gradient(#5CBF60, #4CAF50),
+        linear-gradient(#4CAF50, #388E3C); /* Cores mais escuras para o clique */
+    -fx-border-color: #2E8B57; /* Borda mais escura no clique */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 1); /* Sombra menor no clique */
+    -fx-translate-y: 1px; /* Move o botão ligeiramente para baixo */
+}

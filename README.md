@@ -1,24 +1,57 @@
 # Train Workers
 
-Este e um projeto da cadeira de Sistem Operacionais ,ele contem alguns usos de threads semaforos para demostrar seu uso.
+Este é um projeto da cadeira de Sistemas Operacionais que demonstra o uso de threads e semáforos em Java.
 
-## Pré-requisitos
+## Requisitos
 
-Liste as ferramentas e versões necessárias para rodar o projeto. Por exemplo:
+* [Java Development Kit (JDK) 21](https://www.oracle.com/java/technologies/downloads/#java21) ou superior
+* Não é necessário instalar o Maven (o projeto usa Maven Wrapper)
 
-*   [Java 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
-*   [Maven 3.6](https://maven.apache.org/download.cgi)
+## Como executar o projeto
 
-## Como Rodar o Projeto
+### Opção 1: Executar diretamente com Maven Wrapper
+1. Clone o repositório:
+```bash
+git clone https://github.com/PMiguelit0/Train_Workers.git
+cd Train_Workers
+```
 
-Instruções passo a passo sobre como configurar e executar o projeto.
+2. Execute o projeto:
+```bash
+# No Windows:
+.\mvnw.cmd clean javafx:run
 
-1.  Clone o repositório: `git clone https://github.com/PMiguelit0/Train_Workers`
-2.  Navegue até o diretório do projeto: `cd Train_Workers`
-3.  Instale as dependências: `mvn install`
-4.  Execute o projeto: `mvn spring-boot:run` (se for um projeto Spring Boot)
+# No Linux/Mac:
+./mvnw clean javafx:run
+```
+
+### Opção 2: Criar e executar JAR
+1. Clone o repositório:
+```bash
+git clone https://github.com/PMiguelit0/Train_Workers.git
+cd Train_Workers
+```
+
+2. Crie o arquivo JAR:
+```bash
+# No Windows:
+.\mvnw.cmd clean package
+
+# No Linux/Mac:
+./mvnw clean package
+```
+
+3. Execute o JAR:
+```bash
+java -jar target/Train_Workers-1.0-SNAPSHOT-jar-with-dependencies.jar
+```
+
+## Observações
+- O Maven Wrapper (mvnw) baixará automaticamente todas as dependências necessárias na primeira execução
+- Certifique-se de ter o Java 21 instalado e configurado corretamente em sua máquina
 
 ## Tecnologias Utilizadas
 
-*   [Java](https://www.java.com/) - Linguagem de programação
-*   [Maven](https://maven.apache.org/) - Gerenciador de dependências
+* Java 21 - Linguagem de programação
+* JavaFX - Framework para interface gráfica
+* Maven - Gerenciador de dependências (via Maven Wrapper)

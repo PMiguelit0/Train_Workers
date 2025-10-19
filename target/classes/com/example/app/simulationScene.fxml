@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<?import javafx.scene.control.Label?>
+<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="585.0" minWidth="1024.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.app.SimulationSceneController">
+   <children>
+      <ImageView fitHeight="332.0" fitWidth="1024.0" layoutY="-3.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../../images/SimulationBackground_2.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="256.0" fitWidth="1134.0" layoutY="329.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/SimulationBackground.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="train" fitHeight="145.0" fitWidth="248.0" layoutX="-13.0" layoutY="386.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/Train.jpg" />
+         </image>
+      </ImageView>
+      <Button layoutX="500.0" layoutY="330.0" mnemonicParsing="false" onAction="#createWorkerButton" text="Create Worker" />
+      <TextField fx:id="packingTimeField" layoutX="445.0" layoutY="330.0" prefHeight="25.0" prefWidth="49.0" promptText="T.E" />
+      <TextField fx:id="workerIdField" layoutX="361.0" layoutY="330.0" prefHeight="25.0" prefWidth="76.0" promptText="Id" />
+       <Label fx:id="statusLabel" layoutX="361.0" layoutY="365.0" text="System Ready" textFill="BLUE" />
+      <ImageView fx:id="imageView0" fitHeight="108.0" fitWidth="75.0" layoutX="30.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../images/empacotadorDormindo.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imageView1" fitHeight="108.0" fitWidth="75.0" layoutX="103.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../images/empacotadorDormindo.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imageView2" fitHeight="108.0" fitWidth="75.0" layoutX="178.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../images/empacotadorDormindo.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imageView3" fitHeight="108.0" fitWidth="75.0" layoutX="252.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../images/empacotadorDormindo.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imageView4" fitHeight="108.0" fitWidth="75.0" layoutX="325.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../images/empacotadorDormindo.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imageView5" fitHeight="108.0" fitWidth="75.0" layoutX="399.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../images/empacotadorDormindo.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imageView6" fitHeight="108.0" fitWidth="75.0" layoutX="474.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../images/empacotadorDormindo.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imageView7" fitHeight="108.0" fitWidth="75.0" layoutX="548.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../images/empacotadorDormindo.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imageView8" fitHeight="108.0" fitWidth="75.0" layoutX="623.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../images/empacotadorDormindo.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imageView9" fitHeight="108.0" fitWidth="75.0" layoutX="696.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../images/empacotadorDormindo.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imageView10" fitHeight="108.0" fitWidth="75.0" layoutX="770.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../images/empacotadorDormindo.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imageView11" fitHeight="108.0" fitWidth="75.0" layoutX="845.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../images/empacotadorDormindo.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imageView12" fitHeight="108.0" fitWidth="75.0" layoutX="919.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../images/empacotadorDormindo.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

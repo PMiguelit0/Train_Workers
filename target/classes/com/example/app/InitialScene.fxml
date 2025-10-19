@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane minHeight="585.0" minWidth="1024.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.app.InitialSceneController">
+   <children>
+      <ImageView fitHeight="585.0" fitWidth="1038.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/InitialBackground.jpg" />
+         </image>
+         <viewport>
+            <Rectangle2D />
+         </viewport>
+      </ImageView>
+      <VBox alignment="CENTER_LEFT" layoutX="748.0" layoutY="87.0" prefHeight="372.0" prefWidth="262.0" spacing="10.0" styleClass="root-pane" stylesheets="@styles.css">
+          <padding>
+              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+          </padding>
+          <children>
+              <Label prefHeight="53.0" prefWidth="178.0" styleClass="welcome-label" text="Bem-vindo" textFill="WHITE" />
+              <TextField fx:id="trainCapacity" promptText="Carga do Trem" />
+              <TextField fx:id="travellingTime" promptText="Tempo de Viagem" />
+              <TextField fx:id="depositLimit" promptText="Tamanho do Depósito" />
+              <!-- Label para exibir mensagens de erro. Começa invisível. -->
+              <Label fx:id="errorLabel" managed="false" styleClass="error-label" text="Preencha os campos!" visible="false" />
+              <Button fx:id="btnConfirm" onAction="#buttonConfirmClicked" prefHeight="53.0" prefWidth="181.0" styleClass="confirm-button" text="Confirmar" />
+          </children>
+      </VBox>
+   </children>
+</Pane>
