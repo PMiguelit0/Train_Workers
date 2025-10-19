@@ -6,7 +6,7 @@ Este e um projeto da cadeira de Sistem Operacionais ,ele contem alguns usos de t
 
 Liste as ferramentas e versões necessárias para rodar o projeto. Por exemplo:
 
-*   [Java 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
+*   [Java 21](https://www.oracle.com/java/technologies/javase-jdk21-downloads.html)
 *   [Maven 3.6](https://maven.apache.org/download.cgi)
 
 ## Como Rodar o Projeto
