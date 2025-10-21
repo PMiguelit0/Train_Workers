@@ -62,3 +62,9 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 1); /* Sombra menor no clique */
     -fx-translate-y: 1px; /* Move o botão ligeiramente para baixo */
 }
+.contador-label {
+    -fx-font-size: 48px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -ms-flex-item-align: center;
+}

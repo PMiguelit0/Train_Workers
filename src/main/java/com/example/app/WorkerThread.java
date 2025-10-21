@@ -2,14 +2,6 @@ package com.example.app;
 
 import javafx.application.Platform;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-
-import java.io.InputStream;
-import java.util.Objects;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.util.Duration;
-import java.util.concurrent.CountDownLatch;
 
 public class WorkerThread extends Thread {
 
@@ -36,38 +28,50 @@ public class WorkerThread extends Thread {
     public void run() {
         while (true) {
             try {
-                Semaphores.espacosVazios.acquire();
-                // --- PARTE 1: ANIMAÇÃO VISUAL ---
-                final CountDownLatch animationLatch = new CountDownLatch(1);
                 Platform.runLater(() -> {
-                    Timeline timeline = new Timeline();
-                    timeline.getKeyFrames().addAll(
-                            new KeyFrame(Duration.ZERO, event -> {
-                                controller.setWorkerVisible(workerId, true);
-                                controller.setWorkerImage(workerId, workingImage);
-                            }),
-                            new KeyFrame(Duration.millis(packingTime / 2.0), event -> {
-                                controller.setWorkerImage(workerId, packedImage);
-                            }),
-                            new KeyFrame(Duration.millis(packingTime), event -> {
-                                controller.setWorkerImage(workerId, sleepingImage);
-                            })
-                    );
-                    // Quando a animação terminar, avisa a thread de background.
-                    timeline.setOnFinished(event -> animationLatch.countDown());
-                    timeline.play();
+                    controller.setWorkerVisible(workerId, true);
+                    controller.setWorkerImage(workerId, sleepingImage);
+                });
+                Semaphores.espacosVazios.acquire();
+                // --- Animação CPU-bound do trabalhador ---
+                System.out.println("Trabalhador " + workerId + " iniciando animaçao de empacotamento (CPU-bound)...");
+                final int totalMs = packingTime; // já em ms
+                final long startTime = System.currentTimeMillis();
+                // Ativa a imagem e coloca imagem de working imediatamente
+                Platform.runLater(() -> {
+                    controller.setWorkerVisible(workerId, true);
+                    controller.setWorkerImage(workerId, workingImage);
                 });
 
-                // --- PARTE 2: ESPERA PELA ANIMAÇÃO ---
-                System.out.println("👷 Trabalhador " + workerId + " iniciando animação de empacotamento...");
-                animationLatch.await(); // Espera a animação de empacotar terminar.
-                System.out.println("✅ Trabalhador " + workerId + " terminou a animação com a caixa pronta.");
+                // Loop ativo que simula trabalho e atualiza UI em aproximadamente 60 FPS
+                final int frameMs = 1000 / 60; // ~16ms por frame
+                long elapsed;
+                while (true) {
+                    elapsed = System.currentTimeMillis() - startTime;
+                    if (elapsed >= totalMs) break;
+
+                    final long localElapsed = elapsed;
+                    // metade do tempo mostra a imagem "packed"
+                    if (localElapsed >= totalMs / 2) {
+                        Platform.runLater(() -> controller.setWorkerImage(workerId, packedImage));
+                    }
+
+                    // faz trabalho CPU-bound leve (busy-wait por frameMs)
+                    long frameStart = System.nanoTime();
+                    while ((System.nanoTime() - frameStart) < frameMs * 1_000_000L) {
+                        // busy work intencional para tornar CPU-bound; mínimo custo por iteração
+                        double x = Math.sqrt(12345.6789);
+                        x = x * Math.PI;
+                    }
+                }
+                
+                    System.out.println("Trabalhador " + workerId + " terminou a animaçao com a caixa pronta.");
 
                 // --- PARTE 3: LÓGICA DE SINCRONIZAÇÃO ---
 
                 // 1. Espera por um espaço vazio no depósito.
                 //    Se bloquear aqui, a imagem 'packedImage' ficará visível, mostrando que ele está esperando.
-                System.out.println("👷 Trabalhador " + workerId + " aguardando espaço no depósito com a caixa na mão...");
+                System.out.println("Trabalhador " + workerId + " aguardando espaço no depósito com a caixa na mão...");
                 // 2. Trava o depósito para acesso exclusivo.
                 Semaphores.mutexDeposito.acquire();
                 try {
@@ -77,7 +81,9 @@ public class WorkerThread extends Thread {
                     Platform.runLater(() -> {
                         controller.setWorkerImage(workerId, sleepingImage);
                     });
-                    System.out.println("📦 Trabalhador " + workerId + " Colocou a caixa no depósito.");
+                    System.out.println("Trabalhador " + workerId + " Colocou a caixa no depósito.");
+                    // Notifica o controller para incrementar o contador de caixas empacotadas.
+                    controller.incrementBoxCount();
                     // --- FIM DA REGIÃO CRÍTICA ---
                 } finally {
                     // 3. Libera a trava do depósito.
@@ -86,11 +92,12 @@ public class WorkerThread extends Thread {
 
                 // 4. Sinaliza que um novo item está disponível para o trem.
                 Semaphores.itensDisponiveis.release();
-                System.out.println("📬 Trabalhador " + workerId + " sinalizou que há "+Semaphores.itensDisponiveis.availablePermits()+" caixas");
+
+                System.out.println("Trabalhador " + workerId + " sinalizou que há "+Semaphores.itensDisponiveis.availablePermits()+" caixas");
 
 
             } catch (InterruptedException e) {
-                System.out.println("❗ Thread do Trabalhador " + workerId + " foi interrompida.");
+                System.out.println("Thread do Trabalhador " + workerId + " foi interrompida.");
                 Thread.currentThread().interrupt();
                 break;
             }

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.TextFlow?>
 
-<?import javafx.scene.control.Label?>
 <AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="585.0" minWidth="1024.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.app.SimulationSceneController">
    <children>
       <ImageView fitHeight="332.0" fitWidth="1024.0" layoutY="-3.0" pickOnBounds="true">
@@ -93,5 +94,21 @@
             <Image url="@../../../images/empacotadorDormindo.png" />
          </image>
       </ImageView>
+      <ImageView fitHeight="98.0" fitWidth="163.0" layoutX="5.0" layoutY="227.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/mesa.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="121.0" fitWidth="76.0" layoutX="14.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/caixa.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="boxCountLabel" layoutX="83.0" layoutY="242.0" prefHeight="60.0" prefWidth="64.0" 
+          style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50; -fx-background-color: rgba(255,255,255,0.8); -fx-padding: 5px; -fx-background-radius: 5px; -fx-alignment: center;" 
+          text="0" />
+   <Label layoutX="83.0" layoutY="220.0" prefHeight="20.0" prefWidth="64.0" 
+          style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #34495e; -fx-background-color: rgba(255,255,255,0.8); -fx-padding: 2px; -fx-background-radius: 3px; -fx-alignment: center;" 
+          text="Caixas" />
    </children>
 </AnchorPane>

@@ -18,7 +18,7 @@ public class SimulationSceneController {
     @FXML private TextField packingTimeField;
     @FXML private Label statusLabel;
 
-    // Seus ImageViews (de 0 a 12, totalizando 13)
+
     @FXML private ImageView imageView0;
     @FXML private ImageView imageView1;
     @FXML private ImageView imageView2;
@@ -33,10 +33,13 @@ public class SimulationSceneController {
     @FXML private ImageView imageView11;
     @FXML private ImageView imageView12;
 
-    @FXML private AnchorPane mainPane; // Injeção do painel principal
+    @FXML private AnchorPane mainPane; 
     @FXML private ImageView train;
+    @FXML private javafx.scene.control.Label boxCountLabel;
 
     private List<ImageView> imageViews;
+    // contador de caixas empacotadas
+    private int boxCount = 0;
 
     @FXML
     public void initialize() {
@@ -61,6 +64,27 @@ public class SimulationSceneController {
         if (workerId < 1 || workerId > imageViews.size() || image == null) return;
         ImageView workerImageView = imageViews.get(workerId - 1);
         Platform.runLater(() -> workerImageView.setImage(image));
+    }
+
+    /**
+     * Incrementa o contador de caixas e atualiza o rótulo na UI.
+     * Pode ser chamado de threads de background.
+     */
+    public void incrementBoxCount() {
+        // Atualiza a variável em background e atualiza o UI thread-safely
+        synchronized (this) {
+            boxCount++;
+        }
+        final int current = boxCount;
+        Platform.runLater(() -> boxCountLabel.setText(String.valueOf(current)));
+    }
+
+    public void resetBoxCount() {
+        synchronized (this) {
+            boxCount = 0;
+        }
+        final int current = boxCount;
+        Platform.runLater(() -> boxCountLabel.setText(String.valueOf(current)));
     }
 
     public void setWorkerVisible(int workerId, boolean isVisible) {
