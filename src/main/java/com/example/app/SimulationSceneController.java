@@ -38,6 +38,7 @@ public class SimulationSceneController {
     @FXML private javafx.scene.control.Label boxCountLabel;
 
     private List<ImageView> imageViews;
+
     // contador de caixas empacotadas
     private int boxCount = 0;
 
@@ -48,7 +49,6 @@ public class SimulationSceneController {
                 imageView5, imageView6, imageView7, imageView8,
                 imageView9, imageView10, imageView11, imageView12
         );
-        // MUDANÇA 1: Informa o usuário sobre o intervalo correto (1 a 13)
         statusLabel.setText("Sistema pronto. Escolha um trabalhador (ID 1-13).");
         TrainThread trainThread = new TrainThread(
                 InitialSceneController.trainCapacityValue,
@@ -116,7 +116,6 @@ public class SimulationSceneController {
             statusLabel.setText("Aviso: O trabalhador " + workerId + " já está ativo.");
             return; // Para a execução do método
         }
-        // MUDANÇA 2: Usa 'this' para passar a referência do controller
         WorkerThread workerThread = new WorkerThread(workerId, packingTime, this);
         workerThread.start();
 

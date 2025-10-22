@@ -13,7 +13,6 @@ public class WorkerThread extends Thread {
     private final Image workingImage;
     private final Image packedImage;
 
-    // CONSTRUTOR ATUALIZADO
     public WorkerThread(int id, int time, SimulationSceneController controller) {
         this.workerId = id;
         this.packingTime = time*1000;
@@ -33,11 +32,9 @@ public class WorkerThread extends Thread {
                     controller.setWorkerImage(workerId, sleepingImage);
                 });
                 Semaphores.espacosVazios.acquire();
-                // --- Animação CPU-bound do trabalhador ---
-                System.out.println("Trabalhador " + workerId + " iniciando animaçao de empacotamento (CPU-bound)...");
-                final int totalMs = packingTime; // já em ms
+                System.out.println("Trabalhador " + workerId + " iniciando animaçao de empacotamento");
+                final int totalMs = packingTime; 
                 final long startTime = System.currentTimeMillis();
-                // Ativa a imagem e coloca imagem de working imediatamente
                 Platform.runLater(() -> {
                     controller.setWorkerVisible(workerId, true);
                     controller.setWorkerImage(workerId, workingImage);
@@ -67,17 +64,12 @@ public class WorkerThread extends Thread {
                 
                     System.out.println("Trabalhador " + workerId + " terminou a animaçao com a caixa pronta.");
 
-                // --- PARTE 3: LÓGICA DE SINCRONIZAÇÃO ---
 
-                // 1. Espera por um espaço vazio no depósito.
-                //    Se bloquear aqui, a imagem 'packedImage' ficará visível, mostrando que ele está esperando.
                 System.out.println("Trabalhador " + workerId + " aguardando espaço no depósito com a caixa na mão...");
                 // 2. Trava o depósito para acesso exclusivo.
                 Semaphores.mutexDeposito.acquire();
                 try {
                     // --- REGIÃO CRÍTICA ---
-                    // MUDANÇA 2: A imagem volta para "dormindo" APÓS colocar a caixa.
-                    // Isso precisa ser feito via Platform.runLater.
                     Platform.runLater(() -> {
                         controller.setWorkerImage(workerId, sleepingImage);
                     });

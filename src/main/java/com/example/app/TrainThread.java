@@ -42,7 +42,7 @@ public class TrainThread extends Thread {
 
 
                 // --- Animação CPU-bound do trem (ida) ---
-                System.out.println("Trem iniciando animaçao (CPU-bound) ida...");
+                System.out.println("Trem iniciando animaçao ida...");
                 double startX = trainImageView.getTranslateX();
                 double endX = Math.max(0, mainPane.getWidth() - trainImageView.getFitWidth());
                 final long startMs = System.currentTimeMillis();
@@ -57,7 +57,6 @@ public class TrainThread extends Thread {
                     double currentX = startX + (endX - startX) * progress;
                     Platform.runLater(() -> trainImageView.setTranslateX(currentX));
 
-                    // busy-wait para tornar a animação CPU-bound por frameMs
                     long frameStart = System.nanoTime();
                     while ((System.nanoTime() - frameStart) < frameMs * 1_000_000L) {
                         double acc = Math.sqrt(98765.4321) * Math.PI; // trabalho leve
@@ -70,7 +69,7 @@ public class TrainThread extends Thread {
                 System.out.println("Trem chegou ao destino e descarregou.");
 
                 // --- Animação CPU-bound do trem (volta) ---
-                System.out.println("Trem iniciando animação (CPU-bound) volta...");
+                System.out.println("Trem iniciando animação volta...");
                 final long startReturnMs = System.currentTimeMillis();
                 final double returnStartX = endX;
                 final double returnEndX = 0;

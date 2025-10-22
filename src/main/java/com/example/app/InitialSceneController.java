@@ -1,6 +1,5 @@
 package com.example.app;
 
-import com.example.app.Semaphores;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -21,7 +20,6 @@ public class InitialSceneController implements Initializable {
     @FXML private Button btnConfirm;
     @FXML private Label errorLabel;
 
-    // MUDANÇA 1: Declare as variáveis como public static
     // Elas servirão como um "container global" para os dados da simulação.
     public static int trainCapacityValue;
     public static int travellingTimeValue;
@@ -68,7 +66,6 @@ public class InitialSceneController implements Initializable {
             }
         } else {
 
-            // MUDANÇA 3: Inicialize os semáforos com TODOS os valores necessários
             Semaphores.initializeSemaphores(depositLimitValue);
 
             try {
