@@ -79,9 +79,16 @@ public class SimulationSceneController {
         Platform.runLater(() -> boxCountLabel.setText(String.valueOf(current)));
     }
 
-    public void resetBoxCount() {
+    /**
+     * Decrementa o contador de caixas em uma unidade e atualiza o rótulo na UI.
+     * Não permite que o contador fique negativo.
+     * Pode ser chamado de threads de background.
+     */
+    public void decreaseBoxCount() {
         synchronized (this) {
-            boxCount = 0;
+            if (boxCount > 0) {
+                boxCount--;
+            }
         }
         final int current = boxCount;
         Platform.runLater(() -> boxCountLabel.setText(String.valueOf(current)));

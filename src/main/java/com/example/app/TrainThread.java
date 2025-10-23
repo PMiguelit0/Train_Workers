@@ -30,8 +30,8 @@ public class TrainThread extends Thread {
                 Semaphores.itensDisponiveis.acquire(this.trainCapacity);
                 for (int i = 0; i < this.trainCapacity; i++) {
                     Semaphores.mutexDeposito.acquire();
-                    controller.resetBoxCount();
                     try {
+                        controller.decreaseBoxCount(); 
                         System.out.println("Trem carregou a caixa " + (i + 1) + "/" + this.trainCapacity);
                     } finally {
                         Semaphores.mutexDeposito.release();
